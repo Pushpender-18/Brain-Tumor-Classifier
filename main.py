@@ -37,13 +37,18 @@ x_test = pd.DataFrame(x_test)
 
 clf = LogisticRegression(max_iter=400) ## Logistic Regression classifier
 
-clf.fit(x_train, y_train) ## Training model
-predicted = clf.predict(x_test) ## Testing model
+##clf.fit(x_train, y_train) ## Training model
+##predicted = clf.predict(x_test) ## Testing model
 
-os.chdir("/home/pushpender/Documents/BrainTumor/")
-pickle.dump(clf, open("lr_sc.md", 'wb')) ## Saving model
+##os.chdir("/home/pushpender/Documents/BrainTumor/")
+##pickle.dump(clf, open("lr_sc.md", 'wb')) ## Saving model
 
-print(metrics.accuracy_score(y_test, predicted)*100) ## Printing accurarcy of model
+##print(metrics.accuracy_score(y_test, predicted)*100) ## Printing accurarcy of model
 
-metrics.ConfusionMatrixDisplay.from_predictions(y_test, predicted) ## Showing confusion matrix
-plt.show()
+##metrics.ConfusionMatrixDisplay.from_predictions(y_test, predicted) ## Showing confusion matrix
+##plt.show()
+
+clf = pickle.load(open('/home/pushpender/Documents/BrainTumor/lr_sc.md', 'rb'))
+predicted = clf.predict(x_test)
+
+print(metrics.accuracy_score(y_test, predicted)*100)
