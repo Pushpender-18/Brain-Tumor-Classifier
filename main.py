@@ -10,15 +10,14 @@ import os
 import pickle
 
 images = []
-
-os.chdir('Brain Tumor') ## Changing directory
+ ## Changing directory
 for i in range(1, 3763):
-    x = np.asarray(Image.open(f"Image{i}.jpg").convert('L')) ## Loading image, converting to numpy array
+    x = np.asarray(Image.open(f"Brain Tumor/Image{i}.jpg").convert('L')) ## Loading image, converting to numpy array
     images.append(x) ## Appending image to list
 
 data = np.array(images) ## Converting image list to numpy array
  
-labels = pd.read_csv('/home/pushpender/Documents/BrainTumor/Brain Tumor.csv') ## Loading csv file
+labels = pd.read_csv('Brain Tumor.csv') ## Loading csv file
 
 labels = labels["Class"]
 
@@ -48,7 +47,7 @@ clf = LogisticRegression(max_iter=400) ## Logistic Regression classifier
 ##metrics.ConfusionMatrixDisplay.from_predictions(y_test, predicted) ## Showing confusion matrix
 ##plt.show()
 
-clf = pickle.load(open('/home/pushpender/Documents/BrainTumor/lr_sc.md', 'rb'))
+clf = pickle.load(open('lr_sc.md', 'rb'))
 predicted = clf.predict(x_test)
 
 print(metrics.accuracy_score(y_test, predicted)*100)
